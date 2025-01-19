@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+#define pii pair<int,int>
 
 class Graph
 {
@@ -17,7 +18,7 @@ public:
     void addEdge(int u,int v,int w);
     void readData(vector<vector<int>> &data);
     void print();
-    vector<int>* connected(int v);
+    vector<pii>* connected(int v);
 
 };
 
@@ -30,6 +31,10 @@ void Graph::readData(vector<vector<int>> &data){
     for(vector<int> &e:data){
         addEdge(e[0],e[1],(e.size()==3?e[2]:1));
     }
+}
+
+vector<pii>* Graph::connected(int v){
+    return &graph[v];
 }
 
 void Graph::print(){
