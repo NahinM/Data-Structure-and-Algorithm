@@ -26,7 +26,7 @@ int grid_dijkstra(Grid &grid,int ur,int uc){
         int r = qr.front(), c = qc.front();
         qr.pop();qc.pop();
 
-        for(int i=0;i<8;i++) {
+        for(int i=0;i<4;i++) {
             int rr = r+dr[i], cc = c+dc[i];
             if(!valid(rr,cc)) continue;
 
@@ -49,7 +49,7 @@ int grid_dijkstra(Grid &grid,int ur,int uc){
         walk_r = p.first;
         walk_c = p.second;
         if(grid[walk_r][walk_c] == 'S') break;
-        grid[walk_r][walk_c] = '+';
+        grid[walk_r][walk_c] = '.';
     }
 
     for(int i=0;i<row;i++){
@@ -61,17 +61,28 @@ int grid_dijkstra(Grid &grid,int ur,int uc){
 
 int main(){
     Grid grid = {
-        "..........",
-        "..........",
-        "..........",
-        "...S......",
-        "......####",
-        "####......",
-        "..........",
-        "..########",
-        ".........E",
-        ".........."
+        "###############################",
+        "#S    #                       #",
+        "####  #  ####  #############  #",
+        "#  #  #  #     #     #     #  #",
+        "#  #  ####  ####  #  #  ####  #",
+        "#  #     #  #     #     #     #",
+        "#  ####  #  ####  ####  #  ####",
+        "#     #     #     #     #  #  #",
+        "#  #  #######  ####  ####  #  #",
+        "#  #     #        #     #  #  #",
+        "#  #  ####  ####  #######  #  #",
+        "#  #  #     #  #        #     #",
+        "#  ####  ####  #######  ####  #",
+        "#  #     #        #        #  #",
+        "#  #  ####  #######  #######  #",
+        "#     #     #        #        #",
+        "#  #######  #  #######  #######",
+        "#     #     #     #     #     #",
+        "####  #  #  ####  #  #######  #",
+        "#        #     #             E#",
+        "###############################"
     };
 
-    cout << grid_dijkstra(grid,3,3) << '\n';
+    cout << grid_dijkstra(grid,1,1) << '\n';
 }
