@@ -7,24 +7,28 @@
 void dijkstra(Graph &graph,int from,int to){
     priority_queue<pii> pq;
     vector<int> distance(graph.nodes,INF);
-    vector<int>prev(graph.nodes);
+    int prev[graph.nodes];
+    int visited[graph.nodes] = {};
     distance[from] = 0;
     prev[from]=from;
-    pq.push(make_pair(0,from));
+    pq.push({0,from});
 
 
     while(!pq.empty()){
         pii tem = pq.top();
-        int at=tem.second, d=tem.first;
+        int at=tem.second, d=-tem.first;
         pq.pop();
-        for(pii &e:*graph.connected(at)){
+        if(visited[at]) continue;
+
+        for(pii &e:*graph.connected(at)) if(!visited[e.first]) {
             int v=e.first,w=e.second;
             if(d+w < distance[v]){
-                pq.push(make_pair(d+w,v));
                 distance[v] = d+w;
                 prev[v]=at;
+                pq.push({-distance[v],v});
             }
         }
+        visited[at] = 1;
     }
 
     cout << "Distance : " << distance[to];br;
@@ -46,6 +50,7 @@ int main(){
     Graph graph(6,false);
     graph.readData(data);
     graph.print();br;
+    dijkstra(graph,3,4);
     dijkstra(graph,4,3);
 }
 
