@@ -1,12 +1,12 @@
 
 def binarySearch(arr,x):
     lw,hi = 0,len(arr)-1
-    mid = (hi+lw)//2
+    mid = (hi+lw)>>1
 
     while hi-lw>=5:
         if arr[mid] == x: return True
         (lw := mid) if arr[mid]<x else (hi := mid)
-        mid = (hi+lw)//2
+        mid = (hi+lw)>>1
 
     for i in range(lw,hi+1):
         if arr[i] == x: return True
