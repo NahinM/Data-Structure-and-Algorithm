@@ -4,13 +4,13 @@ using namespace std;
 
 bool binSearch(const vector<int> &arr,const int x){
     int lw = 0, hi = arr.size()-1;
-    int mid = (hi-lw)>>1;
+    int mid = (hi+lw)>>1;
 
-    while (hi-lw<=5)
+    while (hi-lw>=5)
     {
         if(arr[mid] == x) return true;
         if(x>arr[mid]) lw=mid; else hi = mid;
-        mid = (hi-lw)>>1;
+        mid = (hi+lw)>>1;
     }
 
     for(int i=lw;i<=hi;i++){
