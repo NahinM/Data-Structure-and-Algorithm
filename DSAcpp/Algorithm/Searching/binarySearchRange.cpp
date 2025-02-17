@@ -14,7 +14,8 @@ pii searchRange(const vector<int> &arr,int a){
     }
     int head=l;
     while (head<=h && arr[head]!=a) head++;
-
+    if(arr[head]!=a) return {-1,-1};
+    
     // second, find the end of the "a,a,...,a" sequence
     l=0; h=arr.size()-1;
     while (h-l>5)
