@@ -7,6 +7,7 @@ def searchRange(arr,a):
         
     head = lw
     while head<=hi and arr[head]!=a: head+=1
+    if arr[head] != a: return (-1,-1)
     
     lw,hi = 0,len(arr)-1 # then search for the end of the "a,a,...,a" sequence
     while hi-lw>5:
