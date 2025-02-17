@@ -10,9 +10,9 @@ int ternarySearch(const vector<int> &arr, int a){
         mid1 = l+(h-l)/3;
         mid2 = h-(h-l)/3;
 
-        if(a<arr[mid1]) h = mid1; // first part of three section
-        else if(arr[mid2]<a) l = mid2; // last part of three section 
-        else { // middle part of three section
+        if(a<arr[mid1]) h = mid1; // first part of three sections
+        else if(arr[mid2]<a) l = mid2; // last part of three sections
+        else { // middle part of three sections
             l = mid1;
             h = mid2;
         }
