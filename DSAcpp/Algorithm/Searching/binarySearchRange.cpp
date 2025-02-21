@@ -7,24 +7,30 @@ using namespace std;
 pii searchRange(const vector<int> &arr,int a){
     // first find the bigining of the "a,a,...,a" sequence
     int l=0,h=arr.size()-1,mid;
-    while (h-l>5)
+    int head = 0, end = h;
+    if(a<arr[l] || arr[h]<a) return {-1,-1};
+    while (l<=h)
     {
         mid = (h+l)>>1;
-        if(a <= arr[mid]) h = mid; else l = mid;
+        if(arr[mid]==a){
+            head = mid;
+            h = mid-1;
+        } else if(a < arr[mid]) h = mid-1;
+        else l = mid+1;
     }
-    int head=l;
-    while (head<=h && arr[head]!=a) head++;
-    if(arr[head]!=a) return {-1,-1};
     
     // second, find the end of the "a,a,...,a" sequence
     l=0; h=arr.size()-1;
-    while (h-l>5)
+    while (l<=h)
     {
         mid = (h+l)>>1;
-        if(a >= arr[mid]) l = mid; else h = mid;
+        if(arr[mid]==a){
+            end = mid;
+            l = mid+1;
+        } else if(a < arr[mid]) h = mid-1;
+        else l = mid+1;
     }
-    int end=h;
-    while(end>=l && arr[end]!=a)end--;
+
     return {head,end};
 }
 
