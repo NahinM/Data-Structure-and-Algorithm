@@ -1,22 +1,27 @@
 
 def searchRange(arr,a):
-    lw,hi = 0,len(arr)-1 # first search for the head of the "a,a,...,a" sequence
-    while hi-lw>5: 
-        mid = (lw+hi)>>1
-        (hi:=mid) if(a<=arr[mid]) else (lw:=mid)
-        
-    head = lw
-    while head<=hi and arr[head]!=a: head+=1
-    if arr[head] != a: return (-1,-1)
-    
-    lw,hi = 0,len(arr)-1 # then search for the end of the "a,a,...,a" sequence
-    while hi-lw>5:
-        mid = (lw+hi)>>1
-        (lw:=mid) if(arr[mid]<=a) else (hi:=mid)
+    lw,hi = 0,len(arr)-1 
+    head,end = 0,hi
+    if a<arr[head] or arr[end] <a: return -1,-1
 
-    end = hi
-    while end>=lw and arr[end]!=a: end-=1
+    while lw<=hi: # search for the head of the "a,a,...,a" sequence
+        mid = (lw+hi)>>1
+        if arr[mid] == a:
+            head = mid
+            hi = mid-1
+        elif arr[mid] < a: lw = mid+1
+        else : hi = mid-1
     
+    lw,hi = 0,len(arr)-1
+
+    while lw<=hi: # search for the end of the "a,a,...,a" sequence
+        mid = (lw+hi)>>1
+        if arr[mid] == a:
+            end = mid
+            lw = mid+1
+        elif arr[mid] < a: lw = mid+1
+        else : hi = mid-1
+
     return head,end
 
 arr = [1,1,2,2,3,3,3,3,4,4,6,6,7,8,8]
