@@ -3,20 +3,15 @@
 using namespace std;
 
 bool binSearch(const vector<int> &arr,const int x){
-    int lw = 0, hi = arr.size()-1;
-    int mid = (hi+lw)>>1;
+    int lw = 0, hi = arr.size()-1,mid;
 
-    while (hi-lw>=5)
+    while (lw<=hi)
     {
-        if(arr[mid] == x) return true;
-        if(x>arr[mid]) lw=mid; else hi = mid;
         mid = (hi+lw)>>1;
+        if(arr[mid]==x) return true;
+        else if(arr[mid]<x) lw = mid+1;
+        else hi = mid-1;
     }
-
-    for(int i=lw;i<=hi;i++){
-        if(arr[i]==x) return true;
-    }
-
     return false;
 }
 
